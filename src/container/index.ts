@@ -11,6 +11,8 @@ import { IGraduationsRepository } from '../modules/users/repositories/IGraduatio
 import GraduationsRepository from '../modules/users/infra/typeorm/repositories/GraduationsRepository';
 import { ISpecialtiesRepository } from '../modules/users/repositories/ISpecialtiesRepository';
 import SpecialtiesRepository from '../modules/users/infra/typeorm/repositories/SpecialtiesRepository';
+import { IEquipamentsRepository } from '../modules/equipaments/repositories/IEquipamentsRepository';
+import EquipamentsRepository from '../modules/equipaments/infra/typeorm/repositories/EquipamentsRepository';
 
 container.registerSingleton<ISectionsRepository>(
   'SectionsRepository',
@@ -35,4 +37,9 @@ container.registerSingleton<IBoardsRepository>(
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
+);
+
+container.registerSingleton<IEquipamentsRepository>(
+  'EquipamentsRepository',
+  EquipamentsRepository,
 );
