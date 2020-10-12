@@ -12,9 +12,14 @@ usersRoues.get('/', async (request: Request, response: Response) => {
 });
 
 usersRoues.post('/', async (request: Request, response: Response) => {
-  const createUser = container.resolve(CreateUserService);
-  const section = await createUser.execute(request.body);
-  return response.json(section);
+  try {
+    const createUser = container.resolve(CreateUserService);
+
+    const user = await createUser.execute(request.body);
+    return response.json(user);
+  } catch (e) {
+    return response.status(400).json(e);
+  }
 });
 
 export default usersRoues;
