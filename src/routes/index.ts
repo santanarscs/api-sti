@@ -6,6 +6,7 @@ import specialtiesRouter from '../modules/users/infra/http/routes/specialties.ro
 import boardsRouter from '../modules/users/infra/http/routes/boards.routes';
 
 import usersRouter from '../modules/users/infra/http/routes/users.routes';
+import sessionsRouter from '../modules/users/infra/http/routes/sessions.routes';
 
 const routes = Router();
 
@@ -14,5 +15,6 @@ routes.use('/graduations', graduationsRouter);
 routes.use('/specialties', specialtiesRouter);
 routes.use('/boards', boardsRouter);
 routes.use('/users', usersRouter);
+routes.use('/sessions', sessionsRouter);
 
 export default routes;
