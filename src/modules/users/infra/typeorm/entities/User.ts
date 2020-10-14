@@ -27,28 +27,28 @@ class User implements IUser {
   @Column()
   specialty_id: string;
 
-  @ManyToOne(() => Specialty)
+  @ManyToOne(() => Specialty, { eager: true })
   @JoinColumn({ name: 'specialty_id' })
   specialty: Specialty;
 
   @Column()
   board_id: string;
 
-  @ManyToOne(() => Board)
+  @ManyToOne(() => Board, { eager: true })
   @JoinColumn({ name: 'board_id' })
   board: Board;
 
   @Column()
   graduation_id: string;
 
-  @ManyToOne(() => Graduation)
+  @ManyToOne(() => Graduation, { eager: true })
   @JoinColumn({ name: 'graduation_id' })
   graduation: Graduation;
 
   @Column()
   section_id: string;
 
-  @ManyToOne(() => Section)
+  @ManyToOne(() => Section, { eager: true })
   @JoinColumn({ name: 'section_id' })
   section: Section;
 
