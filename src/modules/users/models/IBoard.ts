@@ -1,7 +1,7 @@
 import { ObjectID } from 'mongodb';
 
 export default interface IBoard {
-  id: ObjectID;
+  id: ObjectID | string;
 
   name: string;
 

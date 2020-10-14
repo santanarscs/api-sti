@@ -1,7 +1,7 @@
 import { ObjectID } from 'mongodb';
 
 export default interface ISpecialty {
-  id: ObjectID;
+  id: ObjectID | string;
 
   name: string;
 

@@ -5,7 +5,7 @@ import IBoard from './IBoard';
 import ISection from '../../sections/models/ISection';
 
 export default interface IUser {
-  id: ObjectID;
+  id: ObjectID | string;
 
   name: string;
 
