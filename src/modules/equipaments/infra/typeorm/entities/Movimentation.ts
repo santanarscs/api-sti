@@ -10,9 +10,10 @@ import {
 import IMovimentation from '../../../models/IMovimentation';
 import User from '../../../../users/infra/typeorm/entities/User';
 import Section from '../../../../sections/infra/typeorm/entities/Section';
+import Equipament from './Equipament';
 
 @Entity('movimentations_equipamet')
-class Equipament implements IMovimentation {
+class Movimentation implements IMovimentation {
   @PrimaryGeneratedColumn('uuid') id: string;
 
   @Column() date: Date;
@@ -25,7 +26,7 @@ class Equipament implements IMovimentation {
 
   @Column() equipament_id: string;
 
-  @ManyToOne(() => Equipament, { eager: true })
+  @ManyToOne(() => Equipament, equipament => equipament.movimentations, {})
   @JoinColumn({ name: 'equipament_id' })
   equipament: Equipament;
 
@@ -40,4 +41,4 @@ class Equipament implements IMovimentation {
   @UpdateDateColumn() updated_at: Date;
 }
 
-export default Equipament;
+export default Movimentation;
