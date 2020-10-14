@@ -1,13 +1,13 @@
-import { getMongoRepository, MongoRepository } from 'typeorm';
-import Board from '../schemas/Board';
+import { getRepository, Repository } from 'typeorm';
+import Board from '../entities/Board';
 import ICreateBoardDTO from '../../../dtos/ICreateBoardDTO';
 import { IBoardsRepository } from '../../../repositories/IBoardsRepository';
 
 export default class BoardsRepository implements IBoardsRepository {
-  private ormRepository: MongoRepository<Board>;
+  private ormRepository: Repository<Board>;
 
   constructor() {
-    this.ormRepository = getMongoRepository(Board);
+    this.ormRepository = getRepository(Board);
   }
 
   public async findById(id: string): Promise<Board | undefined> {

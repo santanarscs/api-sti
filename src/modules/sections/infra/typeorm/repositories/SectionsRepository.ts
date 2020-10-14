@@ -1,13 +1,13 @@
-import { getMongoRepository, MongoRepository } from 'typeorm';
-import Section from '../schemas/Section';
+import { getRepository, Repository } from 'typeorm';
+import Section from '../entities/Section';
 import ICreateSectionDTO from '../../../dtos/ICreateSectionDTO';
 import { ISectionsRepository } from '../../../repositories/ISectionsRepository';
 
 export default class SectionsRepository implements ISectionsRepository {
-  private ormRepository: MongoRepository<Section>;
+  private ormRepository: Repository<Section>;
 
   constructor() {
-    this.ormRepository = getMongoRepository(Section);
+    this.ormRepository = getRepository(Section);
   }
 
   public async findById(id: string): Promise<Section | undefined> {

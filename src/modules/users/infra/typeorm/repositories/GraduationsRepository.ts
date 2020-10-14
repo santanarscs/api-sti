@@ -1,13 +1,13 @@
-import { getMongoRepository, MongoRepository } from 'typeorm';
-import Graduation from '../schemas/Graduation';
+import { getRepository, Repository } from 'typeorm';
+import Graduation from '../entities/Graduation';
 import ICreateGraduationDTO from '../../../dtos/ICreateGraduationDTO';
 import { IGraduationsRepository } from '../../../repositories/IGraduationsRepository';
 
 export default class GraduationsRepository implements IGraduationsRepository {
-  private ormRepository: MongoRepository<Graduation>;
+  private ormRepository: Repository<Graduation>;
 
   constructor() {
-    this.ormRepository = getMongoRepository(Graduation);
+    this.ormRepository = getRepository(Graduation);
   }
 
   public async findById(id: string): Promise<Graduation | undefined> {

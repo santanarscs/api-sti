@@ -1,13 +1,13 @@
-import { getMongoRepository, MongoRepository } from 'typeorm';
-import Specialty from '../schemas/Specialty';
+import { getRepository, Repository } from 'typeorm';
+import Specialty from '../entities/Specialty';
 import ICreateSpecialtyDTO from '../../../dtos/ICreateSpecialtyDTO';
 import { ISpecialtiesRepository } from '../../../repositories/ISpecialtiesRepository';
 
 export default class SpecialtiesRepository implements ISpecialtiesRepository {
-  private ormRepository: MongoRepository<Specialty>;
+  private ormRepository: Repository<Specialty>;
 
   constructor() {
-    this.ormRepository = getMongoRepository(Specialty);
+    this.ormRepository = getRepository(Specialty);
   }
 
   public async findById(id: string): Promise<Specialty | undefined> {
