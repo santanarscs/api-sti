@@ -1,25 +1,14 @@
-[
-  {
-    "name": "postgres",
-    "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "docker",
-    "database": "sti",
-    "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
-    "migrations": ["./src/database/migrations/*.ts"],
-    "cli": {
-      "migrationsDir": "./src/database/migrations"
-    }
-  },
-  {
-    "name": "default",
-    "type": "mongodb",
-    "host": "localhost",
-    "port": 27017,
-    "database": "subscriptions",
-    "useUnifiedTopology": true,
-    "entities": ["./src/modules/**/infra/typeorm/schemas/*.ts"]
+{
+  "name": "default",
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "docker",
+  "database": "sti",
+  "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
   }
-]
+}
