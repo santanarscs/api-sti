@@ -28,6 +28,10 @@ export default class EquipamentsRepository implements IEquipamentsRepository {
     return equipament;
   }
 
+  public async save(equipament: Equipament): Promise<Equipament> {
+    return this.ormRepository.save(equipament);
+  }
+
   public async delete(id: string): Promise<void> {
     await this.ormRepository.delete(id);
   }

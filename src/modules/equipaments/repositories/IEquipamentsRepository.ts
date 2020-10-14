@@ -6,4 +6,5 @@ export interface IEquipamentsRepository {
   create(data: ICreateEquipamentDTO): Promise<IEquipament>;
   list(): Promise<IEquipament[]>;
   delete(id: string): Promise<void>;
+  save(equipament: IEquipament): Promise<IEquipament>;
 }
