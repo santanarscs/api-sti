@@ -13,6 +13,8 @@ import { ISpecialtiesRepository } from '../modules/users/repositories/ISpecialti
 import SpecialtiesRepository from '../modules/users/infra/typeorm/repositories/SpecialtiesRepository';
 import { IEquipamentsRepository } from '../modules/equipaments/repositories/IEquipamentsRepository';
 import EquipamentsRepository from '../modules/equipaments/infra/typeorm/repositories/EquipamentsRepository';
+import { IMovimentationsRepository } from '../modules/equipaments/repositories/IMovimentationsRepository';
+import MovimentationsRepository from '../modules/equipaments/infra/typeorm/repositories/MovimentationsRepository';
 
 container.registerSingleton<ISectionsRepository>(
   'SectionsRepository',
@@ -42,4 +44,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IEquipamentsRepository>(
   'EquipamentsRepository',
   EquipamentsRepository,
+);
+
+container.registerSingleton<IMovimentationsRepository>(
+  'MovimentationsRepository',
+  MovimentationsRepository,
 );

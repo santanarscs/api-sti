@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import { container } from 'tsyringe';
 import ListEquipamentsService from '../../../services/ListEquipamentsService';
 import CreateEquipamentService from '../../../services/CreateEquipamentService';
+import movimentationRoutes from './movimentations.routes';
 
 const equipamentsRoutes = Router();
 
@@ -16,5 +17,6 @@ equipamentsRoutes.post('/', async (request: Request, response: Response) => {
   const equipament = await createEquipament.execute(request.body);
   return response.json(equipament);
 });
+equipamentsRoutes.use('/movimentations', movimentationRoutes);
 
 export default equipamentsRoutes;
