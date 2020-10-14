@@ -30,6 +30,7 @@ export default class CreateUsers1602621297774 implements MigrationInterface {
           {
             name: 'avatar',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'saram',
@@ -74,6 +75,10 @@ export default class CreateUsers1602621297774 implements MigrationInterface {
           {
             name: 'specialty_id',
             type: 'uuid',
+          },
+          {
+            name: 'sequence',
+            type: 'int',
           },
           {
             name: 'created_at',

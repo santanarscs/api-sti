@@ -1,8 +1,3 @@
-import ISpecialty from '../models/ISpecialty';
-import IGraduation from '../models/IGraduation';
-import IBoard from '../models/IBoard';
-import ISection from '../../sections/models/ISection';
-
 export default interface ICreateUserDTO {
   name: string;
 
@@ -10,13 +5,13 @@ export default interface ICreateUserDTO {
 
   password: string;
 
-  specialty: ISpecialty;
+  specialty_id: string;
 
-  graduation: IGraduation;
+  graduation_id: string;
 
-  board: IBoard;
+  board_id: string;
 
-  section: ISection;
+  section_id: string;
 
   avatar?: string;
 

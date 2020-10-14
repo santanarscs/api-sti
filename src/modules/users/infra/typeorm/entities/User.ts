@@ -24,17 +24,29 @@ class User implements IUser {
 
   @Column() password: string;
 
+  @Column()
+  specialty_id: string;
+
   @ManyToOne(() => Specialty)
   @JoinColumn({ name: 'specialty_id' })
   specialty: Specialty;
+
+  @Column()
+  board_id: string;
 
   @ManyToOne(() => Board)
   @JoinColumn({ name: 'board_id' })
   board: Board;
 
+  @Column()
+  graduation_id: string;
+
   @ManyToOne(() => Graduation)
   @JoinColumn({ name: 'graduation_id' })
   graduation: Graduation;
+
+  @Column()
+  section_id: string;
 
   @ManyToOne(() => Section)
   @JoinColumn({ name: 'section_id' })
