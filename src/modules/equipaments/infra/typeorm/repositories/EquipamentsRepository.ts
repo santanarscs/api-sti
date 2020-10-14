@@ -1,13 +1,13 @@
-import { getMongoRepository, MongoRepository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import { IEquipamentsRepository } from '../../../repositories/IEquipamentsRepository';
-import Equipament from '../schemas/Equipament';
+import Equipament from '../entities/Equipament';
 import ICreateEquipamentDTO from '../../../dtos/ICreateEquipamentDTO';
 
 export default class EquipamentsRepository implements IEquipamentsRepository {
-  private ormRepository: MongoRepository<Equipament>;
+  private ormRepository: Repository<Equipament>;
 
   constructor() {
-    this.ormRepository = getMongoRepository(Equipament);
+    this.ormRepository = getRepository(Equipament);
   }
 
   public async findById(id: string): Promise<Equipament | undefined> {

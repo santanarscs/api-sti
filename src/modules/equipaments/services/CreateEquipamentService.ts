@@ -5,6 +5,7 @@ import IEquipament from '../models/IEquipament';
 interface IRequest {
   description: string;
   bpm: string;
+  service_tag: string;
 }
 
 @injectable()

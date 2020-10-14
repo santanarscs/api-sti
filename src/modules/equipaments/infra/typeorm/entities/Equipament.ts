@@ -1,16 +1,15 @@
 import {
   Entity,
-  ObjectID,
-  ObjectIdColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import IEquipament from '../../../models/IEquipament';
 
 @Entity('equipaments')
 class Equipament implements IEquipament {
-  @ObjectIdColumn() id: ObjectID;
+  @PrimaryGeneratedColumn('uuid') id: string;
 
   @Column() description: string;
 

@@ -1,11 +1,13 @@
 import { ObjectID } from 'mongodb';
 
 export default interface IEquipament {
-  id: ObjectID;
+  id: ObjectID | string;
 
   description: string;
 
   bpm: string;
+
+  service_tag: string;
 
   created_at: Date;
 
