@@ -17,7 +17,13 @@ export default class CreateMovimentationService {
   ) {}
 
   public async execute(data: IRequest): Promise<IMovimentation> {
-    const movimentation = await this.movimentationsRepository.create(data);
+    const { date, equipament_id, section_id, user_id } = data;
+    const movimentation = await this.movimentationsRepository.create({
+      date,
+      equipament_id,
+      section_id,
+      user_id: user_id || undefined,
+    });
     return movimentation;
   }
 }
