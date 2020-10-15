@@ -18,4 +18,13 @@ export default class MovimentationsRepository
 
     return movimentation;
   }
+
+  public async findByEquipamentId(
+    equipament_id: string,
+  ): Promise<Movimentation[]> {
+    const movimentations = await this.ormRepository.find({
+      where: { equipament_id },
+    });
+    return movimentations;
+  }
 }
