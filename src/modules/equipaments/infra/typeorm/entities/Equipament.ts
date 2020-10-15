@@ -4,10 +4,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryGeneratedColumn,
-  OneToMany,
 } from 'typeorm';
 import IEquipament from '../../../models/IEquipament';
-import Movimentation from './Movimentation';
 
 @Entity('equipaments')
 class Equipament implements IEquipament {
@@ -18,12 +16,6 @@ class Equipament implements IEquipament {
   @Column() bpm: string;
 
   @Column() service_tag: string;
-
-  @OneToMany(() => Movimentation, movimentation => movimentation.equipament, {
-    cascade: true,
-    eager: true,
-  })
-  movimentations: Movimentation[];
 
   @CreateDateColumn() created_at: Date;
 

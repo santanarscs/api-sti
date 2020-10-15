@@ -10,7 +10,6 @@ import {
 import IMovimentation from '../../../models/IMovimentation';
 import User from '../../../../users/infra/typeorm/entities/User';
 import Section from '../../../../sections/infra/typeorm/entities/Section';
-import Equipament from './Equipament';
 
 @Entity('movimentations_equipamet')
 class Movimentation implements IMovimentation {
@@ -25,10 +24,6 @@ class Movimentation implements IMovimentation {
   user: User;
 
   @Column() equipament_id: string;
-
-  @ManyToOne(() => Equipament, equipament => equipament.movimentations, {})
-  @JoinColumn({ name: 'equipament_id' })
-  equipament: Equipament;
 
   @Column() section_id: string;
 
