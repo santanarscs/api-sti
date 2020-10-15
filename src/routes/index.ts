@@ -8,6 +8,7 @@ import boardsRouter from '../modules/users/infra/http/routes/boards.routes';
 import usersRouter from '../modules/users/infra/http/routes/users.routes';
 import sessionsRouter from '../modules/users/infra/http/routes/sessions.routes';
 import equipamentsRouter from '../modules/equipaments/infra/http/routes/equipaments.routes';
+import movimentationRoutes from '../modules/equipaments/infra/http/routes/movimentations.routes';
 
 const routes = Router();
 
@@ -18,5 +19,6 @@ routes.use('/boards', boardsRouter);
 routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
 routes.use('/equipaments', equipamentsRouter);
+routes.use('/movimentations', movimentationRoutes);
 
 export default routes;

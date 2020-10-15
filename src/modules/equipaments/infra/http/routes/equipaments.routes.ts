@@ -2,7 +2,6 @@ import { Router, Request, Response } from 'express';
 import { container } from 'tsyringe';
 import ListEquipamentsService from '../../../services/ListEquipamentsService';
 import CreateEquipamentService from '../../../services/CreateEquipamentService';
-import movimentationRoutes from './movimentations.routes';
 import FindEquipamentService from '../../../services/FindEquipamentService';
 import UpdateEquipamentService from '../../../services/UpdateEquipamentService';
 import DeleteEquipamentService from '../../../services/DeleteEquipamentService';
@@ -49,6 +48,5 @@ equipamentsRoutes.delete(
     return response.status(204).send();
   },
 );
-equipamentsRoutes.use('/movimentations', movimentationRoutes);
 
 export default equipamentsRoutes;
