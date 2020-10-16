@@ -24,7 +24,7 @@ interface IRequest {
   last_promotion: Date;
   sequence: string;
   provider: boolean;
-  avatar?: string;
+  filename?: string;
 }
 
 @injectable()
@@ -62,6 +62,7 @@ export default class CreateUserService {
     last_promotion,
     sequence,
     provider,
+    filename,
   }: IRequest): Promise<IUser> {
     const checkUserEmail = await this.usersRepository.findByEmail(email);
     if (checkUserEmail) {
@@ -92,6 +93,7 @@ export default class CreateUserService {
     }
 
     const hashedPassword = await hash(password, 8);
+    const avatar = filename || undefined;
 
     const user = await this.usersRepository.create({
       name,
@@ -109,6 +111,7 @@ export default class CreateUserService {
       last_promotion,
       sequence,
       provider,
+      avatar,
     });
     return user;
   }

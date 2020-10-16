@@ -1,11 +1,15 @@
 import { Router, Request, Response } from 'express';
 import { container } from 'tsyringe';
+import multer from 'multer';
 import ListUsersService from '../../../services/ListUsersService';
 import CreateUserService from '../../../services/CreateUserService';
 import FindUserService from '../../../services/FindUserService';
 import DeleteUserService from '../../../services/DeleteUserService';
 
+import uploadConfig from '../../../../../config/upload';
+
 const usersRoues = Router();
+const upload = multer(uploadConfig);
 
 usersRoues.get('/', async (request: Request, response: Response) => {
   const listUsers = container.resolve(ListUsersService);
@@ -20,16 +24,21 @@ usersRoues.get('/:id', async (request: Request, response: Response) => {
   return response.json(user);
 });
 
-usersRoues.post('/', async (request: Request, response: Response) => {
-  try {
-    const createUser = container.resolve(CreateUserService);
+usersRoues.post(
+  '/',
+  upload.single('avatar'),
+  async (request: Request, response: Response) => {
+    try {
+      const { filename } = request.file;
+      const createUser = container.resolve(CreateUserService);
 
-    const user = await createUser.execute(request.body);
-    return response.json(user);
-  } catch (e) {
-    return response.status(400).json(e);
-  }
-});
+      const user = await createUser.execute({ ...request.body, filename });
+      return response.json(user);
+    } catch (e) {
+      return response.status(400).json(e);
+    }
+  },
+);
 
 usersRoues.delete('/:id', async (request: Request, response: Response) => {
   try {

@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import express from 'express';
+import path from 'path';
 import cors from 'cors';
 import routes from './routes';
 import './database';
@@ -15,6 +16,7 @@ app.use(
   }),
 );
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 app.use(routes);
 
 app.get('/', (request, response) =>
