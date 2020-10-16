@@ -18,14 +18,29 @@ export default class EquipamentsRepository implements IEquipamentsRepository {
   public async list({
     page,
     limit,
+    queryName,
   }: {
     page: number;
     limit: number;
+    queryName?: string | undefined;
   }): Promise<[Equipament[], number]> {
-    const equipaments = await this.ormRepository.findAndCount({
-      skip: (page - 1) * limit,
-      take: limit,
-    });
+    const query = this.ormRepository
+      .createQueryBuilder('equipaments')
+      .skip((page - 1) * limit)
+      .take(limit);
+
+    if (queryName) {
+      query
+        .where('description ILIKE :description', {
+          description: `%${queryName}%`,
+        })
+        .orWhere('bpm ILIKE :bpm', { bpm: `%${queryName}%` })
+        .orWhere('service_tag ILIKE :service_tag', {
+          service_tag: `%${queryName}%`,
+        });
+    }
+    const equipaments = await query.getManyAndCount();
+
     return equipaments;
   }
 

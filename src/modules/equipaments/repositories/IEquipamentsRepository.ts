@@ -4,6 +4,7 @@ import IEquipament from '../models/IEquipament';
 interface IFindEquipaments {
   page: number;
   limit: number;
+  queryName?: string;
 }
 
 export interface IEquipamentsRepository {
