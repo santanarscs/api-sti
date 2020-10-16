@@ -2,6 +2,11 @@ import { injectable, inject } from 'tsyringe';
 import { IEquipamentsRepository } from '../repositories/IEquipamentsRepository';
 import IEquipament from '../models/IEquipament';
 
+interface IRequest {
+  page: number;
+  limit: number;
+}
+
 @injectable()
 export default class ListEquipamentsService {
   constructor(
@@ -9,8 +14,12 @@ export default class ListEquipamentsService {
     private equipamentsRepository: IEquipamentsRepository,
   ) {}
 
-  public async execute(): Promise<IEquipament[]> {
-    const equipaments = await this.equipamentsRepository.list();
+  public async execute({
+    page,
+    limit,
+  }: IRequest): Promise<[IEquipament[], number]> {
+    const equipaments = await this.equipamentsRepository.list({ page, limit });
+
     return equipaments;
   }
 }

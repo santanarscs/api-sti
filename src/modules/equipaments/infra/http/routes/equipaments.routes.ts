@@ -9,8 +9,13 @@ import DeleteEquipamentService from '../../../services/DeleteEquipamentService';
 const equipamentsRoutes = Router();
 
 equipamentsRoutes.get('/', async (request: Request, response: Response) => {
+  const { page, limit } = request.query;
   const listEquipaments = container.resolve(ListEquipamentsService);
-  const equipaments = await listEquipaments.execute();
+  const [equipaments, total] = await listEquipaments.execute({
+    page: Number(page),
+    limit: Number(limit),
+  });
+  response.header('x-total-count', String(total));
   return response.json(equipaments);
 });
 

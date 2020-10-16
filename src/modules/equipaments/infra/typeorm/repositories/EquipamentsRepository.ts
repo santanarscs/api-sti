@@ -15,9 +15,18 @@ export default class EquipamentsRepository implements IEquipamentsRepository {
     return equipament;
   }
 
-  public async list(): Promise<Equipament[]> {
-    const sections = await this.ormRepository.find();
-    return sections;
+  public async list({
+    page,
+    limit,
+  }: {
+    page: number;
+    limit: number;
+  }): Promise<[Equipament[], number]> {
+    const equipaments = await this.ormRepository.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+    return equipaments;
   }
 
   public async create(data: ICreateEquipamentDTO): Promise<Equipament> {
