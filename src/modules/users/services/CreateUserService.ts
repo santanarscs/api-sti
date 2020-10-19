@@ -20,10 +20,10 @@ interface IRequest {
   full_name: string;
   situation: string;
   phone: string;
-  birthday: Date;
-  last_promotion: Date;
+  birthday: string;
+  last_promotion: string;
   sequence: string;
-  provider: boolean;
+  provider: string;
   filename?: string;
 }
 
@@ -62,7 +62,7 @@ export default class CreateUserService {
     last_promotion,
     sequence,
     provider,
-    filename,
+    filename = undefined,
   }: IRequest): Promise<IUser> {
     const checkUserEmail = await this.usersRepository.findByEmail(email);
     if (checkUserEmail) {
@@ -93,7 +93,6 @@ export default class CreateUserService {
     }
 
     const hashedPassword = await hash(password, 8);
-    const avatar = filename || undefined;
 
     const user = await this.usersRepository.create({
       name,
@@ -107,11 +106,11 @@ export default class CreateUserService {
       full_name,
       situation,
       phone,
-      birthday,
-      last_promotion,
+      birthday: new Date(birthday),
+      last_promotion: new Date(last_promotion),
       sequence,
-      provider,
-      avatar,
+      provider: !!provider,
+      avatar: filename,
     });
     return user;
   }

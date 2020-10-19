@@ -31,7 +31,6 @@ usersRoues.post(
     try {
       const { filename } = request.file;
       const createUser = container.resolve(CreateUserService);
-
       const user = await createUser.execute({ ...request.body, filename });
       return response.json(user);
     } catch (e) {

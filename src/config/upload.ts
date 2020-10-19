@@ -1,7 +1,7 @@
 import multer from 'multer';
 import { resolve } from 'path';
 
-const tmpFolder = resolve(__dirname, '..', '..', 'uplaods');
+const tmpFolder = resolve(__dirname, '..', '..', 'uploads');
 
 export default {
   directory: tmpFolder,
