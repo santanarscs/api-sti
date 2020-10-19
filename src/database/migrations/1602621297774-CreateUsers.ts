@@ -50,11 +50,11 @@ export default class CreateUsers1602621297774 implements MigrationInterface {
           },
           {
             name: 'birthday',
-            type: 'timestamp with time zone',
+            type: 'timestamp',
           },
           {
             name: 'last_promotion',
-            type: 'timestamp with time zone',
+            type: 'timestamp',
           },
           {
             name: 'provider',

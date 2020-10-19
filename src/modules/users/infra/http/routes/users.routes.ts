@@ -12,8 +12,14 @@ const usersRoues = Router();
 const upload = multer(uploadConfig);
 
 usersRoues.get('/', async (request: Request, response: Response) => {
+  const { page, limit, queryName } = request.query;
   const listUsers = container.resolve(ListUsersService);
-  const users = await listUsers.execute();
+  const [users, total] = await listUsers.execute({
+    page: Number(page),
+    limit: Number(limit),
+    queryName: queryName ? String(queryName) : undefined,
+  });
+  response.header('x-total-count', String(total));
   return response.json(users);
 });
 
