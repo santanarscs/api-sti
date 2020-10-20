@@ -34,26 +34,18 @@ usersRoues.post(
   '/',
   upload.single('avatar'),
   async (request: Request, response: Response) => {
-    try {
-      const { filename } = request.file;
-      const createUser = container.resolve(CreateUserService);
-      const user = await createUser.execute({ ...request.body, filename });
-      return response.json(user);
-    } catch (e) {
-      return response.status(400).json(e);
-    }
+    const { filename } = request.file;
+    const createUser = container.resolve(CreateUserService);
+    const user = await createUser.execute({ ...request.body, filename });
+    return response.json(user);
   },
 );
 
 usersRoues.delete('/:id', async (request: Request, response: Response) => {
-  try {
-    const { id } = request.params;
-    const deleteUser = container.resolve(DeleteUserService);
-    await deleteUser.execute(id);
-    return response.status(204).send();
-  } catch (e) {
-    return response.status(400).json(e);
-  }
+  const { id } = request.params;
+  const deleteUser = container.resolve(DeleteUserService);
+  await deleteUser.execute(id);
+  return response.status(204).send();
 });
 
 export default usersRoues;
