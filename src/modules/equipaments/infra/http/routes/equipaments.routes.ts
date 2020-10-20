@@ -1,5 +1,8 @@
 import { Router, Request, Response } from 'express';
 import { container } from 'tsyringe';
+
+import ensureAuthenticade from '../../../../users/infra/http/middlewares/ensureAuthenticated';
+
 import ListEquipamentsService from '../../../services/ListEquipamentsService';
 import CreateEquipamentService from '../../../services/CreateEquipamentService';
 import FindEquipamentService from '../../../services/FindEquipamentService';
@@ -7,6 +10,8 @@ import UpdateEquipamentService from '../../../services/UpdateEquipamentService';
 import DeleteEquipamentService from '../../../services/DeleteEquipamentService';
 
 const equipamentsRoutes = Router();
+
+equipamentsRoutes.use(ensureAuthenticade);
 
 equipamentsRoutes.get('/', async (request: Request, response: Response) => {
   const { page, limit, queryName } = request.query;
