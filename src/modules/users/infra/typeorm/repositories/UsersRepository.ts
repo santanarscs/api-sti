@@ -35,7 +35,7 @@ export default class UsersRepository implements IUsersRepository {
       .leftJoinAndSelect('users.specialty', 'specialties')
       .leftJoinAndSelect('users.board', 'boards')
       .leftJoinAndSelect('users.section', 'sections')
-      .skip((page - 1) * limit)
+      .skip(Number((page - 1) * limit))
       .take(limit);
 
     if (queryName) {
