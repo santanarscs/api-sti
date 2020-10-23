@@ -3,11 +3,17 @@ export default interface IOrder {
 
   description: string;
 
-  user_id: string;
+  user: string;
 
   type: string;
 
   status: string;
+
+  solver_id: string;
+
+  resolution: string;
+
+  resolution_date: Date;
 
   created_at: Date;
 

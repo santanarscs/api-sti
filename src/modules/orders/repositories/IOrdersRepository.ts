@@ -2,8 +2,8 @@ import ICreateOrderDTO from '../dtos/ICreateOrderDTO';
 import IOrder from '../models/IOrder';
 
 interface IFindOrders {
-  page: number;
-  limit: number;
+  page?: number;
+  limit?: number;
   queryName?: string;
 }
 

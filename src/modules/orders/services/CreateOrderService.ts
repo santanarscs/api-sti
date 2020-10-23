@@ -5,7 +5,7 @@ import IOrder from '../models/IOrder';
 interface IRequest {
   description: string;
 
-  user_id: string;
+  user: string;
 
   type: string;
 
