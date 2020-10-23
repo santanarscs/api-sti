@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 import CreateOrderService from '../../../services/CreateOrderService';
 import ListOrdersService from '../../../services/ListOrdersService';
 import FindOrderService from '../../../services/FindOrderService';
+import UpdateOrderService from '../../../services/UpdateOrderService';
 
 const ordersRoutes = Router();
 
@@ -16,6 +17,16 @@ ordersRoutes.get('/:id', async (request: Request, response: Response) => {
   const { id } = request.params;
   const findOrder = container.resolve(FindOrderService);
   const order = await findOrder.execute(id);
+  return response.json(order);
+});
+
+ordersRoutes.put('/:id', async (request: Request, response: Response) => {
+  const { id } = request.params;
+  const updateOrder = container.resolve(UpdateOrderService);
+  const order = await updateOrder.execute({
+    id,
+    ...request.body,
+  });
   return response.json(order);
 });
 
