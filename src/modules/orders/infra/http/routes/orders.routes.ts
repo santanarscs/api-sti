@@ -8,8 +8,14 @@ import UpdateOrderService from '../../../services/UpdateOrderService';
 const ordersRoutes = Router();
 
 ordersRoutes.get('/', async (request: Request, response: Response) => {
-  const listOrders = container.resolve(ListOrdersService);
-  const orders = await listOrders.execute({});
+  const { page, limit, queryName } = request.query;
+  const listOrderes = container.resolve(ListOrdersService);
+  const [orders, total] = await listOrderes.execute({
+    page: Number(page),
+    limit: Number(limit),
+    queryName: queryName ? String(queryName) : undefined,
+  });
+  response.header('x-total-count', String(total));
   return response.json(orders);
 });
 
