@@ -3,8 +3,8 @@ import { IUsersRepository } from '../repositories/IUsersRepository';
 import IUser from '../models/IUser';
 
 interface IRequest {
-  page: number;
-  limit: number;
+  page?: number;
+  limit?: number;
   queryName?: string;
 }
 

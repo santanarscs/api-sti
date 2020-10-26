@@ -2,8 +2,8 @@ import ICreateUserDTO from '../dtos/ICreateUserDTO';
 import IUser from '../models/IUser';
 
 interface IFindUsers {
-  page: number;
-  limit: number;
+  page?: number;
+  limit?: number;
   queryName?: string;
 }
 
