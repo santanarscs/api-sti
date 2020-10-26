@@ -2,25 +2,15 @@ import { injectable, inject } from 'tsyringe';
 import { IOrdersRepository } from '../repositories/IOrdersRepository';
 import IOrder from '../models/IOrder';
 
-interface IRequest {
-  description: string;
-
-  user: string;
-
-  type: string;
-
-  status: string;
-}
-
 @injectable()
-export default class CreateOrderService {
+export default class FindOrderService {
   constructor(
     @inject('OrdersRepository')
     private ordersRepository: IOrdersRepository,
   ) {}
 
-  public async execute(data: IRequest): Promise<IOrder> {
-    const order = await this.ordersRepository.create(data);
+  public async execute(id: string): Promise<IOrder | undefined> {
+    const order = await this.ordersRepository.findById(id);
     return order;
   }
 }

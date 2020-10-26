@@ -34,9 +34,11 @@ export default class UsersRepository implements IUsersRepository {
       .leftJoinAndSelect('users.graduation', 'graduations')
       .leftJoinAndSelect('users.specialty', 'specialties')
       .leftJoinAndSelect('users.board', 'boards')
-      .leftJoinAndSelect('users.section', 'sections')
-      .skip(Number((page - 1) * limit))
-      .take(limit);
+      .leftJoinAndSelect('users.section', 'sections');
+
+    if (page && limit) {
+      query.skip(Number((page - 1) * limit)).take(limit);
+    }
 
     if (queryName) {
       query

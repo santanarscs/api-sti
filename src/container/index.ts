@@ -15,6 +15,8 @@ import { IEquipamentsRepository } from '../modules/equipaments/repositories/IEqu
 import EquipamentsRepository from '../modules/equipaments/infra/typeorm/repositories/EquipamentsRepository';
 import { IMovimentationsRepository } from '../modules/equipaments/repositories/IMovimentationsRepository';
 import MovimentationsRepository from '../modules/equipaments/infra/typeorm/repositories/MovimentationsRepository';
+import { IOrdersRepository } from '../modules/orders/repositories/IOrdersRepository';
+import OrdersRepository from '../modules/orders/infra/typeorm/repositories/OrdersRepository';
 
 container.registerSingleton<ISectionsRepository>(
   'SectionsRepository',
@@ -44,6 +46,11 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IEquipamentsRepository>(
   'EquipamentsRepository',
   EquipamentsRepository,
+);
+
+container.registerSingleton<IOrdersRepository>(
+  'OrdersRepository',
+  OrdersRepository,
 );
 
 container.registerSingleton<IMovimentationsRepository>(
