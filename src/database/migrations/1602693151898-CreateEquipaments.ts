@@ -22,6 +22,7 @@ export default class CreateEquipaments1602693151898
             name: 'bpm',
             type: 'varchar',
             isUnique: true,
+            isNullable: true,
           },
           {
             name: 'service_tag',
