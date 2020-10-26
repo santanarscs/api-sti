@@ -27,8 +27,8 @@ export default class CreateMovimentationsEquipament1602694771826
             type: 'uuid',
           },
           {
-            name: 'user_id',
-            type: 'uuid',
+            name: 'user',
+            type: 'varchar',
             isNullable: true,
           },
           {
@@ -48,14 +48,6 @@ export default class CreateMovimentationsEquipament1602694771826
             referencedTableName: 'sections',
             referencedColumnNames: ['id'],
             columnNames: ['section_id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-          {
-            name: 'UserMovimentation',
-            referencedTableName: 'users',
-            referencedColumnNames: ['id'],
-            columnNames: ['user_id'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },

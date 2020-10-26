@@ -7,7 +7,7 @@ export default interface IMovimentation {
 
   section_id: string;
 
-  user_id: string;
+  user: string;
 
   created_at: Date;
 

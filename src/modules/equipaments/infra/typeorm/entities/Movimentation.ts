@@ -8,7 +8,6 @@ import {
   JoinColumn,
 } from 'typeorm';
 import IMovimentation from '../../../models/IMovimentation';
-import User from '../../../../users/infra/typeorm/entities/User';
 import Section from '../../../../sections/infra/typeorm/entities/Section';
 
 @Entity('movimentations_equipamet')
@@ -17,11 +16,7 @@ class Movimentation implements IMovimentation {
 
   @Column() date: Date;
 
-  @Column() user_id: string;
-
-  @ManyToOne(() => User, { eager: true })
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+  @Column() user: string;
 
   @Column() equipament_id: string;
 
