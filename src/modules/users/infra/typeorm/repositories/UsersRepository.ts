@@ -29,12 +29,7 @@ export default class UsersRepository implements IUsersRepository {
     limit: number;
     queryName?: string | undefined;
   }): Promise<[User[], number]> {
-    const query = this.ormRepository
-      .createQueryBuilder('users')
-      .leftJoinAndSelect('users.graduation', 'graduations')
-      .leftJoinAndSelect('users.specialty', 'specialties')
-      .leftJoinAndSelect('users.board', 'boards')
-      .leftJoinAndSelect('users.section', 'sections');
+    const query = this.ormRepository.createQueryBuilder('users');
 
     if (page && limit) {
       query.skip(Number((page - 1) * limit)).take(limit);

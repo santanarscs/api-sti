@@ -34,9 +34,8 @@ usersRoues.post(
   '/',
   upload.single('avatar'),
   async (request: Request, response: Response) => {
-    const { filename } = request.file;
     const createUser = container.resolve(CreateUserService);
-    const user = await createUser.execute({ ...request.body, filename });
+    const user = await createUser.execute(request.body);
     return response.json(user);
   },
 );
