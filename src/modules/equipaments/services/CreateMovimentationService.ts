@@ -6,7 +6,7 @@ interface IRequest {
   date: Date;
   equipament_id: string;
   section_id: string;
-  user_id?: string;
+  user?: string;
 }
 
 @injectable()
@@ -17,12 +17,12 @@ export default class CreateMovimentationService {
   ) {}
 
   public async execute(data: IRequest): Promise<IMovimentation> {
-    const { date, equipament_id, section_id, user_id } = data;
+    const { date, equipament_id, section_id, user } = data;
     const movimentation = await this.movimentationsRepository.create({
       date,
       equipament_id,
       section_id,
-      user_id: user_id || undefined,
+      user: user || undefined,
     });
     return movimentation;
   }

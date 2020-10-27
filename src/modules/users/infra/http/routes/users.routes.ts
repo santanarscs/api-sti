@@ -7,11 +7,18 @@ import FindUserService from '../../../services/FindUserService';
 import DeleteUserService from '../../../services/DeleteUserService';
 
 import uploadConfig from '../../../../../config/upload';
+import ListAdUsersService from '../../../services/ListAdUsersService';
 
-const usersRoues = Router();
+const usersRoutes = Router();
 const upload = multer(uploadConfig);
 
-usersRoues.get('/', async (request: Request, response: Response) => {
+usersRoutes.get('/ad', async (request: Request, response: Response) => {
+  const listUsers = container.resolve(ListAdUsersService);
+  const users = await listUsers.execute();
+  return response.json(users);
+});
+
+usersRoutes.get('/', async (request: Request, response: Response) => {
   const { page, limit, queryName } = request.query;
   const listUsers = container.resolve(ListUsersService);
   const [users, total] = await listUsers.execute({
@@ -23,14 +30,14 @@ usersRoues.get('/', async (request: Request, response: Response) => {
   return response.json(users);
 });
 
-usersRoues.get('/:id', async (request: Request, response: Response) => {
+usersRoutes.get('/:id', async (request: Request, response: Response) => {
   const { id } = request.params;
   const findUser = container.resolve(FindUserService);
   const user = await findUser.execute(id);
   return response.json(user);
 });
 
-usersRoues.post(
+usersRoutes.post(
   '/',
   upload.single('avatar'),
   async (request: Request, response: Response) => {
@@ -40,11 +47,11 @@ usersRoues.post(
   },
 );
 
-usersRoues.delete('/:id', async (request: Request, response: Response) => {
+usersRoutes.delete('/:id', async (request: Request, response: Response) => {
   const { id } = request.params;
   const deleteUser = container.resolve(DeleteUserService);
   await deleteUser.execute(id);
   return response.status(204).send();
 });
 
-export default usersRoues;
+export default usersRoutes;
