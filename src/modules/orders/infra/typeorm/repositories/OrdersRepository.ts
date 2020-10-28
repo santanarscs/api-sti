@@ -24,7 +24,9 @@ export default class OrdersRepository implements IOrdersRepository {
     limit?: number;
     queryName?: string | undefined;
   }): Promise<[Order[], number]> {
-    const query = this.ormRepository.createQueryBuilder('orders');
+    const query = this.ormRepository
+      .createQueryBuilder('orders')
+      .leftJoinAndSelect('orders.type', 'types_orders');
 
     if (page && limit) {
       query.skip((page - 1) * limit).take(limit);
