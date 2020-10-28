@@ -19,6 +19,8 @@ import { IMovimentationsRepository } from '../modules/equipaments/repositories/I
 import MovimentationsRepository from '../modules/equipaments/infra/typeorm/repositories/MovimentationsRepository';
 import { IOrdersRepository } from '../modules/orders/repositories/IOrdersRepository';
 import OrdersRepository from '../modules/orders/infra/typeorm/repositories/OrdersRepository';
+import { ITypesOrderRepository } from '../modules/orders/repositories/ITypesOrderRepository';
+import TypesOrderRepository from '../modules/orders/infra/typeorm/repositories/TypesOrderRepository';
 
 container.registerSingleton<ISectionsRepository>(
   'SectionsRepository',
@@ -53,6 +55,11 @@ container.registerSingleton<IEquipamentsRepository>(
 container.registerSingleton<IOrdersRepository>(
   'OrdersRepository',
   OrdersRepository,
+);
+
+container.registerSingleton<ITypesOrderRepository>(
+  'TypesOrderRepository',
+  TypesOrderRepository,
 );
 
 container.registerSingleton<IMovimentationsRepository>(
