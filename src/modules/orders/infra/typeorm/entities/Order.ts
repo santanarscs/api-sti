@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import IOrder from '../../../models/IOrder';
 import User from '../../../../users/infra/typeorm/entities/User';
+import TypeOrder from './TypeOrder';
 
 @Entity('orders')
 class Order implements IOrder {
@@ -18,7 +19,11 @@ class Order implements IOrder {
 
   @Column() user: string;
 
-  @Column() type: string;
+  @Column() type_id: string;
+
+  @ManyToOne(() => TypeOrder, { eager: true })
+  @JoinColumn({ name: 'type_id' })
+  type: TypeOrder;
 
   @Column() status: string;
 

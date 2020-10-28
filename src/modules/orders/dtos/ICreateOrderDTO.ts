@@ -1,9 +1,11 @@
+import ITypeOrder from '../models/ITypeOrder';
+
 export default interface ICreateOrderDTO {
   description: string;
 
   user: string;
 
-  type: string;
+  type: ITypeOrder;
 
   status: string;
 }

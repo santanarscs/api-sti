@@ -5,7 +5,7 @@ export default interface IOrder {
 
   user: string;
 
-  type: string;
+  type_id: string;
 
   status: string;
 
