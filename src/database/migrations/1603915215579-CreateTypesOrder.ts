@@ -30,12 +30,12 @@ export default class CreateTypesOrder1603915215579
           },
           {
             name: 'created_at',
-            type: 'timestamp',
+            type: 'timestamp with time zone',
             default: 'now()',
           },
           {
             name: 'updated_at',
-            type: 'timestamp',
+            type: 'timestamp with time zone',
             default: 'now()',
           },
         ],
@@ -63,7 +63,6 @@ export default class CreateTypesOrder1603915215579
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('types_orders');
     await queryRunner.dropForeignKey('orders', 'TypesOrder');
     await queryRunner.dropColumn('orders', 'type_id');
     await queryRunner.addColumn(
@@ -71,7 +70,9 @@ export default class CreateTypesOrder1603915215579
       new TableColumn({
         name: 'type',
         type: 'varchar',
+        isNullable: true,
       }),
     );
+    await queryRunner.dropTable('types_orders');
   }
 }
