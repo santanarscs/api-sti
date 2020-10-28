@@ -8,8 +8,6 @@ interface IRequest {
   user: string;
 
   type: string;
-
-  status: string;
 }
 
 @injectable()
@@ -20,7 +18,10 @@ export default class CreateOrderService {
   ) {}
 
   public async execute(data: IRequest): Promise<IOrder> {
-    const order = await this.ordersRepository.create(data);
+    const order = await this.ordersRepository.create({
+      ...data,
+      status: 'ABERTO',
+    });
     return order;
   }
 }
