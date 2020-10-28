@@ -10,6 +10,7 @@ import sessionsRouter from '../modules/users/infra/http/routes/sessions.routes';
 import equipamentsRouter from '../modules/equipaments/infra/http/routes/equipaments.routes';
 import movimentationRoutes from '../modules/equipaments/infra/http/routes/movimentations.routes';
 import ordersRoutes from '../modules/orders/infra/http/routes/orders.routes';
+import typesOrderRoutes from '../modules/orders/infra/http/routes/typesOrder.routes';
 
 const routes = Router();
 
@@ -22,5 +23,6 @@ routes.use('/sessions', sessionsRouter);
 routes.use('/equipaments', equipamentsRouter);
 routes.use('/movimentations', movimentationRoutes);
 routes.use('/orders', ordersRoutes);
+routes.use('/types_order', typesOrderRoutes);
 
 export default routes;
