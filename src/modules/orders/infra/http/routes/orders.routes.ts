@@ -1,12 +1,17 @@
 import { Router, Request, Response } from 'express';
 import { container } from 'tsyringe';
+
+import ensureAuthenticade from '../../../../users/infra/http/middlewares/ensureAuthenticated';
+
 import CreateOrderService from '../../../services/CreateOrderService';
 import ListOrdersService from '../../../services/ListOrdersService';
 import FindOrderService from '../../../services/FindOrderService';
 import UpdateOrderService from '../../../services/UpdateOrderService';
+import DeleteOrderService from '../../../services/DeleteOrderService';
 
 const ordersRoutes = Router();
 
+ordersRoutes.use(ensureAuthenticade);
 ordersRoutes.get('/', async (request: Request, response: Response) => {
   const { page, limit, queryName } = request.query;
   const listOrderes = container.resolve(ListOrdersService);
@@ -26,20 +31,30 @@ ordersRoutes.get('/:id', async (request: Request, response: Response) => {
   return response.json(order);
 });
 
-ordersRoutes.put('/:id', async (request: Request, response: Response) => {
-  const { id } = request.params;
-  const updateOrder = container.resolve(UpdateOrderService);
-  const order = await updateOrder.execute({
-    id,
-    ...request.body,
-  });
-  return response.json(order);
-});
-
 ordersRoutes.post('/', async (request: Request, response: Response) => {
   const createOrder = container.resolve(CreateOrderService);
   const order = await createOrder.execute(request.body);
   return response.json(order);
+});
+
+ordersRoutes.put('/:id', async (request: Request, response: Response) => {
+  const { id } = request.params;
+  const solver_id = request.user.id;
+  const updateOrder = container.resolve(UpdateOrderService);
+  const order = await updateOrder.execute({
+    ...request.body,
+    solver_id,
+    id,
+  });
+  return response.json(order);
+});
+
+ordersRoutes.delete('/:id', async (request: Request, response: Response) => {
+  const { id } = request.params;
+
+  const deleteOrder = container.resolve(DeleteOrderService);
+  await deleteOrder.execute(id);
+  return response.status(204).send();
 });
 
 export default ordersRoutes;
