@@ -41,7 +41,7 @@ export default class CreateOrders1603474213648 implements MigrationInterface {
           },
           {
             name: 'resolution_date',
-            type: 'timestamp',
+            type: 'timestamp with time zone',
             isNullable: true,
           },
           {
