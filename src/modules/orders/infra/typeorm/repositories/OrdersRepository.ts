@@ -26,6 +26,7 @@ export default class OrdersRepository implements IOrdersRepository {
   }): Promise<[Order[], number]> {
     const query = this.ormRepository
       .createQueryBuilder('orders')
+      .orderBy('orders.created_at', 'DESC')
       .leftJoinAndSelect('orders.type', 'types_orders');
 
     if (page && limit) {
