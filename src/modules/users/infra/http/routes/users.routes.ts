@@ -8,9 +8,11 @@ import DeleteUserService from '../../../services/DeleteUserService';
 
 import uploadConfig from '../../../../../config/upload';
 import ListAdUsersService from '../../../services/ListAdUsersService';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import UpdateUserAvatarService from '../../../services/UpdateUserAvatarService';
 
 const usersRoutes = Router();
-const upload = multer(uploadConfig);
+const upload = multer(uploadConfig.multer);
 
 usersRoutes.get('/ad', async (request: Request, response: Response) => {
   const listUsers = container.resolve(ListAdUsersService);
@@ -37,12 +39,22 @@ usersRoutes.get('/:id', async (request: Request, response: Response) => {
   return response.json(user);
 });
 
-usersRoutes.post(
-  '/',
+usersRoutes.post('/', async (request: Request, response: Response) => {
+  const createUser = container.resolve(CreateUserService);
+  const user = await createUser.execute(request.body);
+  return response.json(user);
+});
+
+usersRoutes.patch(
+  '/avatar',
+  ensureAuthenticated,
   upload.single('avatar'),
   async (request: Request, response: Response) => {
-    const createUser = container.resolve(CreateUserService);
-    const user = await createUser.execute(request.body);
+    const updateUserAvatar = container.resolve(UpdateUserAvatarService);
+    const user = await updateUserAvatar.execute({
+      user_id: request.user.id,
+      avatarFilename: request.file.filename,
+    });
     return response.json(user);
   },
 );
