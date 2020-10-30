@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 import FindUserService from '../../../services/FindUserService';
 import UpdateProfileService from '../../../services/UpdateProfileService';
@@ -12,7 +13,7 @@ profilesRouter.get('/', async (request: Request, response: Response) => {
   const user_id = request.user.id;
   const showProfile = container.resolve(FindUserService);
   const user = await showProfile.execute(user_id);
-  return response.json(user);
+  return response.json(classToClass(user));
 });
 
 profilesRouter.put('/', async (request: Request, response: Response) => {
@@ -27,7 +28,7 @@ profilesRouter.put('/', async (request: Request, response: Response) => {
     password,
     user_id,
   });
-  return response.json(user);
+  return response.json(classToClass(user));
 });
 
 export default profilesRouter;

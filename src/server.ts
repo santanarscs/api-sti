@@ -7,6 +7,7 @@ import cors from 'cors';
 import routes from './routes';
 import './database';
 import './container';
+import uploadConfig from './config/upload';
 import AppError from './AppError';
 
 const PORT = 3333;
@@ -19,7 +20,7 @@ app.use(
   }),
 );
 app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
 
 app.get('/', (request, response) =>
