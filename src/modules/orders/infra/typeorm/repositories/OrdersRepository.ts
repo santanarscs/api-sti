@@ -34,9 +34,14 @@ export default class OrdersRepository implements IOrdersRepository {
     }
 
     if (queryName) {
-      query.where('description ILIKE :description', {
-        description: `%${queryName}%`,
-      });
+      query
+        .where('description ILIKE :description', {
+          description: `%${queryName}%`,
+        })
+        .orWhere('user ILIKE :user', { user: `%${queryName}%` })
+        .orWhere('status ILIKE :status', {
+          status: `%${queryName}%`,
+        });
     }
     const orders = await query.getManyAndCount();
 
