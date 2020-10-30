@@ -12,5 +12,6 @@ export interface IUsersRepository {
   findByEmail(email: string): Promise<IUser | undefined>;
   create(data: ICreateUserDTO): Promise<IUser>;
   list(data: IFindUsers): Promise<[IUser[], number]>;
+  save(data: IUser): Promise<IUser>;
   delete(id: string): Promise<void>;
 }
