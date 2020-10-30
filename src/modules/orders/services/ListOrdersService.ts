@@ -6,6 +6,7 @@ interface IRequest {
   page?: number;
   limit?: number;
   queryName?: string;
+  isOld: boolean;
 }
 
 @injectable()
@@ -19,11 +20,13 @@ export default class ListOrdersService {
     page,
     limit,
     queryName,
+    isOld = false,
   }: IRequest): Promise<[IOrder[], number]> {
     const orders = await this.ordersRepository.list({
       page,
       limit,
       queryName,
+      isOld,
     });
 
     return orders;

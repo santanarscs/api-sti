@@ -15,12 +15,13 @@ ordersRoutes.get(
   '/',
   ensureAuthenticade,
   async (request: Request, response: Response) => {
-    const { page, limit, queryName } = request.query;
+    const { page, limit, queryName, isOld } = request.query;
     const listOrderes = container.resolve(ListOrdersService);
     const [orders, total] = await listOrderes.execute({
       page: Number(page),
       limit: Number(limit),
       queryName: queryName ? String(queryName) : undefined,
+      isOld: isOld === 'true',
     });
     response.header('x-total-count', String(total));
     return response.json(orders);

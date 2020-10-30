@@ -19,10 +19,12 @@ export default class OrdersRepository implements IOrdersRepository {
     page,
     limit,
     queryName,
+    isOld,
   }: {
     page?: number;
     limit?: number;
     queryName?: string | undefined;
+    isOld: boolean;
   }): Promise<[Order[], number]> {
     const query = this.ormRepository
       .createQueryBuilder('orders')
@@ -43,6 +45,10 @@ export default class OrdersRepository implements IOrdersRepository {
           status: `%${queryName}%`,
         });
     }
+    if (!isOld) {
+      query.andWhere('status != :status', { status: 'FECHADO' });
+    }
+
     const orders = await query.getManyAndCount();
 
     return orders;

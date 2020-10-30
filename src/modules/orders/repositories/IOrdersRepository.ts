@@ -5,6 +5,7 @@ interface IFindOrders {
   page?: number;
   limit?: number;
   queryName?: string;
+  isOld: boolean;
 }
 
 export interface IOrdersRepository {
