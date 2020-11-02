@@ -40,7 +40,7 @@ export default class UsersRepository implements IUsersRepository {
         .where('name ILIKE :name', {
           name: `%${queryName}%`,
         })
-        .orWhere('full_name ILIKE :full_name', { full_name: `%${queryName}%` });
+        .orWhere('email ILIKE :email', { email: `%${queryName}%` });
     }
 
     const users = await query.getManyAndCount();
