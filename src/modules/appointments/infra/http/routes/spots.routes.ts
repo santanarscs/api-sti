@@ -4,6 +4,7 @@ import CreateSpotService from '../../../services/CreateSpotService';
 import ListSpotsService from '../../../services/ListSpotsService';
 import FindSpotService from '../../../services/FindSpotsService';
 import DeleteSpotService from '../../../services/DeleteSpotService';
+import UpdateSpotsService from '../../../services/UpdateSpotService';
 
 const spotsRoutes = Router();
 
@@ -37,6 +38,17 @@ spotsRoutes.delete('/:id', async (request: Request, response: Response) => {
   const deleteSpot = container.resolve(DeleteSpotService);
   await deleteSpot.execute(id);
   return response.status(204).send();
+});
+
+spotsRoutes.put('/:id', async (request: Request, response: Response) => {
+  const { id } = request.params;
+
+  const updateSpot = container.resolve(UpdateSpotsService);
+  const spot = await updateSpot.execute({
+    ...request.body,
+    id,
+  });
+  return response.json(spot);
 });
 
 export default spotsRoutes;

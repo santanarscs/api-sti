@@ -1,7 +1,7 @@
 import ICreateSpotDTO from '../dtos/ICreateSpotDTO';
 import ISpot from '../models/ISpot';
 
-interface IFindUsers {
+interface IFindSpots {
   page?: number;
   limit?: number;
   queryName?: string;
@@ -9,6 +9,7 @@ interface IFindUsers {
 export interface ISpotsRepository {
   findById(id: string): Promise<ISpot | undefined>;
   create(data: ICreateSpotDTO): Promise<ISpot>;
-  list(data: IFindUsers): Promise<[ISpot[], number]>;
+  list(data: IFindSpots): Promise<[ISpot[], number]>;
   delete(id: string): Promise<void>;
+  save(spot: ISpot): Promise<ISpot>;
 }
