@@ -12,6 +12,7 @@ import equipamentsRouter from '../modules/equipaments/infra/http/routes/equipame
 import movimentationRoutes from '../modules/equipaments/infra/http/routes/movimentations.routes';
 import ordersRoutes from '../modules/orders/infra/http/routes/orders.routes';
 import typesOrderRoutes from '../modules/orders/infra/http/routes/typesOrder.routes';
+import spotsRoutes from '../modules/appointments/infra/http/routes/spots.routes';
 
 const routes = Router();
 
@@ -26,5 +27,6 @@ routes.use('/equipaments', equipamentsRouter);
 routes.use('/movimentations', movimentationRoutes);
 routes.use('/orders', ordersRoutes);
 routes.use('/types_order', typesOrderRoutes);
+routes.use('/spots', spotsRoutes);
 
 export default routes;
