@@ -3,7 +3,7 @@ import ITypeOrder from '../models/ITypeOrder';
 export default interface ICreateOrderDTO {
   description: string;
 
-  user: string;
+  owner: string;
 
   type: ITypeOrder;
 
