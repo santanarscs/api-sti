@@ -7,7 +7,7 @@ import AppError from '../../../AppError';
 interface IRequest {
   description: string;
 
-  user: string;
+  owner: string;
 
   type_id: string;
 }
@@ -22,7 +22,7 @@ export default class CreateOrderService {
   ) {}
 
   public async execute({
-    user,
+    owner,
     description,
     type_id,
   }: IRequest): Promise<IOrder> {
@@ -32,7 +32,7 @@ export default class CreateOrderService {
     }
 
     const order = await this.ordersRepository.create({
-      user,
+      owner,
       type,
       description,
       status: 'ABERTO',
