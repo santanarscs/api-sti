@@ -3,7 +3,7 @@ export default interface IOrder {
 
   description: string;
 
-  user: string;
+  owner: string;
 
   type_id: string;
 
