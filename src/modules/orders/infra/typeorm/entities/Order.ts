@@ -17,7 +17,7 @@ class Order implements IOrder {
 
   @Column() description: string;
 
-  @Column() user: string;
+  @Column() owner: string;
 
   @Column() type_id: string;
 

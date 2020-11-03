@@ -34,13 +34,12 @@ export default class OrdersRepository implements IOrdersRepository {
     if (page && limit) {
       query.skip((page - 1) * limit).take(limit);
     }
-
     if (queryName) {
       query
         .where('description ILIKE :description', {
           description: `%${queryName}%`,
         })
-        .orWhere('user ILIKE :user', { user: `%${queryName}%` })
+        .orWhere('owner ILIKE :owner', { owner: `%${queryName}%` })
         .orWhere('status ILIKE :status', {
           status: `%${queryName}%`,
         });
