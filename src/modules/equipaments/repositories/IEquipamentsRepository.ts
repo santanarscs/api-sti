@@ -9,6 +9,7 @@ interface IFindEquipaments {
 
 export interface IEquipamentsRepository {
   findById(id: string): Promise<IEquipament | undefined>;
+  findByBpm(bpm: string): Promise<IEquipament | undefined>;
   create(data: ICreateEquipamentDTO): Promise<IEquipament>;
   list(data: IFindEquipaments): Promise<[IEquipament[], number]>;
   delete(id: string): Promise<void>;

@@ -15,6 +15,11 @@ export default class EquipamentsRepository implements IEquipamentsRepository {
     return equipament;
   }
 
+  public async findByBpm(bpm: string): Promise<Equipament | undefined> {
+    const equipament = await this.ormRepository.findOne({where: {bpm}})
+    return equipament;
+  }
+
   public async list({
     page,
     limit,
